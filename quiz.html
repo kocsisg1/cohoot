@@ -30,12 +30,14 @@ body{
     transform: translate(-50%,-50%);
     left: 50%;
     top: 50%;
+    
 }
 .background .shape{
     height: 200px;
     width: 200px;
     position: absolute;
     border-radius: 50%;
+    
 }
 .shape:first-child{
     background: linear-gradient(
@@ -104,14 +106,17 @@ body{
   text-align: center;
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  z-index: 100;
   
 }
 
 .answer-card:hover {
-  background: #695d5d;
+  background-color: #9e7272;
   transform: scale(1.05);
+  border: 3px solid red;
 }
+
+
     </style>
     <title>Cohoot</title>
 </head>
@@ -132,12 +137,12 @@ body{
     
     <div class="quiz-container">
         <div class="quiz-card">
-          <h2 class="quiz-question">What is the capital of France?</h2>
+          <h2 class="quiz-question" id="kerdes">What is the capital of France?</h2>
           <div class="answers-grid">
-            <div class="answer-card">A. Paris</div>
-            <div class="answer-card">B. Rome</div>
-            <div class="answer-card">C. Berlin</div>
-            <div class="answer-card">D. Madrid</div>
+            <div class="answer-card" id="avalasz"></div>
+            <div class="answer-card" id="bvalasz"><button class="answerbtn"></button></div>
+            <div class="answer-card" id="cvalasz"><button class="answerbtn"></button></div>
+            <div class="answer-card" id="dvalasz"><button class="answerbtn"></button></div>
           </div>
         </div>
       </div>
