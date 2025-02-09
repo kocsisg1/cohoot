@@ -1,0 +1,38 @@
+﻿using System.Text;
+using System.Security.Cryptography;
+using cohoot.Models;
+
+namespace cohoot.Services
+{
+    public class SecurityService
+    {
+        public static int SaltLength = 64;
+
+        public static Dictionary<string, Felhasznalok> LoggedInUsers = new Dictionary<string, Felhasznalok>();
+        public static string GenerateSalt()
+        {
+            Random random = new Random();
+            string karakterek = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            string salt = "";
+            for (int i = 0; i < SaltLength; i++)
+            {
+                salt += karakterek[random.Next(karakterek.Length)];
+            }
+            return salt;
+        }
+
+        public static string CreateSHA256(string input)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] data = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+                var sBuilder = new StringBuilder();
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+                return sBuilder.ToString();
+            }
+        }
+    }
+}
