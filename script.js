@@ -1,20 +1,52 @@
-/*loginbutton.addEventListener('click', function (e) {
+var currentData = null;
+
+getNextQuestion()
+
+agomb.addEventListener('click', function (e) {
     e.preventDefault();
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
-    if(username!="" && password!="") {
-        window.location.replace("./main.html")
-    }
+    onAnswer(1);
 } );
-*/
-fetch("https://localhost:44331/api/Quiz")
+
+bgomb.addEventListener('click', function (e) {
+    e.preventDefault();
+    onAnswer(2);
+} );
+
+cgomb.addEventListener('click', function (e) {
+    e.preventDefault();
+    onAnswer(3);
+} );
+
+dgomb.addEventListener('click', function (e) {
+    e.preventDefault();
+    onAnswer(4);
+} );
+
+
+function onAnswer(answer){
+
+    if(currentData != null){
+        if(answer == currentData.helyes){
+            console.log("lyó");
+            //pontokat megadni
+        }
+        getNextQuestion();            
+    }
+}
+
+function getNextQuestion(){
+    fetch("https://localhost:44331/api/Quiz")
 .then(res=>{
+    console.log(res);
+    
     return res.json()
 }).then(data=>{
     console.log(data)
-    document.getElementById("kerdes").innerHTML=data[0].kerdes;
-    document.getElementById("avalasz").innerHTML=data[0].valasz2;
-    document.getElementById("bvalasz").innerHTML=data[0].helyesValasz;
-    document.getElementById("cvalasz").innerHTML=data[0].valasz4;
-    document.getElementById("dvalasz").innerHTML=data[0].valasz3;
+    currentData = data;
+    document.getElementById("kerdes").innerHTML=data.kerdes;
+    document.getElementById("avalasz").innerHTML=data.valasz1;
+    document.getElementById("bvalasz").innerHTML=data.valasz2;
+    document.getElementById("cvalasz").innerHTML=data.valasz4;
+    document.getElementById("dvalasz").innerHTML=data.valasz3;
 })
+}

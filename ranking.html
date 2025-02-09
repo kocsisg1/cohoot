@@ -30,12 +30,14 @@ body{
     transform: translate(-50%,-50%);
     left: 50%;
     top: 50%;
+    
 }
 .background .shape{
     height: 200px;
     width: 200px;
     position: absolute;
     border-radius: 50%;
+    
 }
 .shape:first-child{
     background: linear-gradient(
@@ -44,6 +46,7 @@ body{
     );
     left: -80px;
     top: -80px;
+    
 }
 .shape:last-child{
     background: linear-gradient(
@@ -53,6 +56,7 @@ body{
     );
     right: -30px;
     bottom: -80px;
+    
 }
 .mainpagecontent{
     display: flex;
@@ -70,19 +74,23 @@ body{
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
+  z-index: 100;
 }
 
 .ranking-title {
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;
+  
 }
 
 .ranking-list {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  
 }
+
 
 .ranking-item {
   display: flex;
@@ -93,6 +101,7 @@ body{
   padding: 10px 15px;
   font-size: 16px;
   transition: background 0.3s;
+  
 }
 
 .ranking-item:hover {
@@ -114,6 +123,10 @@ body{
 .score {
   color: #777;
 }
+
+.ranking {
+  z-index: 100;
+}
     </style>
     <title>Cohoot</title>
 </head>
@@ -131,33 +144,15 @@ body{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <div>
+    <div class="ranking">
         <div class="ranking-container">
-            <h1 class="ranking-title">Top Players</h1>
-            <div class="ranking-list">
-              <div class="ranking-item">
-                <span class="rank">1</span>
-                <span class="name">John Doe</span>
-                <span class="score">95 Points</span>
-              </div>
-              <div class="ranking-item">
-                <span class="rank">2</span>
-                <span class="name">Jane Smith</span>
-                <span class="score">90 Points</span>
-              </div>
-              <div class="ranking-item">
-                <span class="rank">3</span>
-                <span class="name">Alex Johnson</span>
-                <span class="score">85 Points</span>
-              </div>
-              <div class="ranking-item">
-                <span class="rank">4</span>
-                <span class="name">Emily Davis</span>
-                <span class="score">80 Points</span>
-              </div>
+            <h1 class="ranking-title">Toplista</h1>
+            <div class="ranking-list" id="ranglista">
+              
+              
             </div>
           </div>
-        
+        <script src="ranking.js"></script>
 </div>
 </div>
 
@@ -165,6 +160,6 @@ body{
 
 
 
-    <script src="script.js"></script>
+    
 </body>
 </html>

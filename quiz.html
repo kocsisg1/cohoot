@@ -69,12 +69,14 @@ body{
   max-width: 600px;
   margin: auto;
   text-align: center;
+  
 }
 .quiz-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  z-index: 100;
 }
 
 .quiz-card {
@@ -139,10 +141,10 @@ body{
         <div class="quiz-card">
           <h2 class="quiz-question" id="kerdes">What is the capital of France?</h2>
           <div class="answers-grid">
-            <div class="answer-card" id="avalasz"></div>
-            <div class="answer-card" id="bvalasz"><button class="answerbtn"></button></div>
-            <div class="answer-card" id="cvalasz"><button class="answerbtn"></button></div>
-            <div class="answer-card" id="dvalasz"><button class="answerbtn"></button></div>
+            <button class="answer-card" id="agomb"><div id="avalasz"></div></button>
+            <button class="answer-card" id="bgomb"><div id="bvalasz"></div></button>
+            <button class="answer-card" id="cgomb"><div id="cvalasz"></div></button>
+            <button class="answer-card" id="dgomb"><div id="dvalasz"></div></button>
           </div>
         </div>
       </div>
