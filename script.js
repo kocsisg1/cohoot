@@ -46,7 +46,7 @@ function getNextQuestion(){
     document.getElementById("kerdes").innerHTML=data.kerdes;
     document.getElementById("avalasz").innerHTML=data.valasz1;
     document.getElementById("bvalasz").innerHTML=data.valasz2;
-    document.getElementById("cvalasz").innerHTML=data.valasz4;
-    document.getElementById("dvalasz").innerHTML=data.valasz3;
+    document.getElementById("cvalasz").innerHTML=data.valasz3;
+    document.getElementById("dvalasz").innerHTML=data.valasz4;
 })
 }
