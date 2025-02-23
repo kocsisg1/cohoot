@@ -17,6 +17,8 @@ public partial class CohootContext : DbContext
 
     public virtual DbSet<Felhasznalok> Felhasznaloks { get; set; }
 
+    public virtual DbSet<Pontok> Pontoks { get; set; }
+
     public virtual DbSet<Quiz> Quizzes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -39,10 +41,33 @@ public partial class CohootContext : DbContext
             entity.Property(e => e.Hash)
                 .HasMaxLength(64)
                 .HasColumnName("HASH");
-            entity.Property(e => e.Pont).HasColumnType("int(11)");
             entity.Property(e => e.Salt)
                 .HasMaxLength(64)
                 .HasColumnName("SALT");
+        });
+
+        modelBuilder.Entity<Pontok>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("pontok");
+
+            entity.HasIndex(e => e.FelhasznaloId, "FelhasznaloId").IsUnique();
+
+            entity.HasIndex(e => e.FelhasznaloId, "FelhasznaloId_2").IsUnique();
+
+            entity.HasIndex(e => e.FelhasznaloId, "FelhasznaloId_3");
+
+            entity.Property(e => e.Id).HasColumnType("int(11)");
+            entity.Property(e => e.FelhasznaloId).HasColumnType("int(11)");
+            entity.Property(e => e.FilmPont).HasColumnType("int(11)");
+            entity.Property(e => e.FoldrajzPont).HasColumnType("int(11)");
+            entity.Property(e => e.MatematikaPont).HasColumnType("int(11)");
+            entity.Property(e => e.TortenelemPont).HasColumnType("int(11)");
+
+            entity.HasOne(d => d.Felhasznalo).WithOne(p => p.Pontok)
+                .HasForeignKey<Pontok>(d => d.FelhasznaloId)
+                .HasConstraintName("pontok_ibfk_1");
         });
 
         modelBuilder.Entity<Quiz>(entity =>

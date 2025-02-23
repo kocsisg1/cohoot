@@ -15,5 +15,5 @@ public partial class Felhasznalok
 
     public string Hash { get; set; } = null!;
 
-    public int Pont { get; set; }
+    public virtual Pontok? Pontok { get; set; }
 }

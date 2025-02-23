@@ -35,8 +35,7 @@ namespace cohoot.Controllers
                         FelhasznaloNev = register.LoginName,
                         Email = register.Email,
                         Salt = salt,
-                        Hash = SecurityService.CreateSHA256(SecurityService.CreateSHA256(salt + register.Password)),
-                        Pont = 0
+                        Hash = SecurityService.CreateSHA256(SecurityService.CreateSHA256(salt + register.Password))
                     };
 
                     await cx.Felhasznaloks.AddAsync(user);

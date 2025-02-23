@@ -1,4 +1,5 @@
-﻿using cohoot.Models;
+﻿using System.Drawing;
+using cohoot.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,12 +23,26 @@ namespace cohoot.Controllers
                     //        f.Pont
                     //    })
                     //    .ToList();
+                    //var response2 = context.Felhasznaloks.OrderByDescending(x => x.FelhasznaloNev).Take(5).Select(f => new
+                    //{
 
-                    var response = context.Felhasznaloks.OrderByDescending(x => x.Pont).Take(5).Select(f => new
-                      {
-                           f.FelhasznaloNev,
-                           f.Pont
-                      }).ToList();
+                    //    f.FelhasznaloNev
+                    //}).ToList();
+
+                    //var response = context.Pontoks.OrderByDescending(x => x.FoldrajzPont).Take(5).Select(f => new
+                    //  {
+
+                    //       f.FoldrajzPont
+                    //  }).ToList();
+
+                    var response = context.Felhasznaloks.Join(context.Pontoks, 
+                        user => user.Id,
+                        points => points.FelhasznaloId,
+                        (user, points) => new {
+                            UserName = user.FelhasznaloNev,
+                            Points = points.FoldrajzPont
+                        }).OrderByDescending(userPoints => userPoints.Points).Take(5).ToList();
+
 
                     return Ok(response);
                 }
