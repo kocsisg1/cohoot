@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2025 at 03:30 PM
+-- Generation Time: Feb 23, 2025 at 05:40 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,18 +34,40 @@ CREATE TABLE `felhasznalok` (
   `FelhasznaloNev` varchar(64) NOT NULL,
   `Email` varchar(64) NOT NULL,
   `SALT` varchar(64) NOT NULL,
-  `HASH` varchar(64) NOT NULL,
-  `Pont` int(11) NOT NULL
+  `HASH` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- Dumping data for table `felhasznalok`
 --
 
-INSERT INTO `felhasznalok` (`Id`, `FelhasznaloNev`, `Email`, `SALT`, `HASH`, `Pont`) VALUES
-(1, 'test', 'test', '7EfYgRx4cz1XwCwcn5igYHjkuMYj0ahM524KKjTIonwsGctDAPBMm4OOzxjWBGyR', 'bc5180573b600c714b010765f553b36d165c753a7cc5ada17ecb9cd0d40de546', 10),
-(2, 'test2', 'test2', 'tiXA77PMNOq4BZU47VoJ6qMDdlNL0qOK9ENlcea49DZNIib7CAx65Q7xLCAhAUbY', '2236a970431c42b273a50371955466b1dcb5482591c57299bcfac567f1eb95c6', 20),
-(3, 'test3', 'asd', 'T0E2ea1Frr3o681RKYehOLkmiKZaGjZx4o3ugkSHbfG9GmvVMH5aRB25jUY3Vnbh', 'bf13a2eebc4975a616f5020a01c38eaa70e02e62adbf065830647495e16c186a', 30);
+INSERT INTO `felhasznalok` (`Id`, `FelhasznaloNev`, `Email`, `SALT`, `HASH`) VALUES
+(1, 'test', 'test', '7EfYgRx4cz1XwCwcn5igYHjkuMYj0ahM524KKjTIonwsGctDAPBMm4OOzxjWBGyR', 'bc5180573b600c714b010765f553b36d165c753a7cc5ada17ecb9cd0d40de546'),
+(2, 'test2', 'test2', 'tiXA77PMNOq4BZU47VoJ6qMDdlNL0qOK9ENlcea49DZNIib7CAx65Q7xLCAhAUbY', '2236a970431c42b273a50371955466b1dcb5482591c57299bcfac567f1eb95c6'),
+(3, 'test3', 'asd', 'T0E2ea1Frr3o681RKYehOLkmiKZaGjZx4o3ugkSHbfG9GmvVMH5aRB25jUY3Vnbh', 'bf13a2eebc4975a616f5020a01c38eaa70e02e62adbf065830647495e16c186a'),
+(4, 'test5', 'alasok12@gmail.com', 'IlY1jsM3wJ7Vg8GT39GXCIrkmDGjFGpn6AWOcc9QYL2UqpHEWGNMdLmWo3o9oBwT', '365291f901de3e65863effddf5fa3e298241c201413152350e94c653279b6126');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pontok`
+--
+
+CREATE TABLE `pontok` (
+  `Id` int(11) NOT NULL,
+  `FelhasznaloId` int(11) NOT NULL,
+  `FoldrajzPont` int(11) NOT NULL,
+  `MatematikaPont` int(11) NOT NULL,
+  `FilmPont` int(11) NOT NULL,
+  `TortenelemPont` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- Dumping data for table `pontok`
+--
+
+INSERT INTO `pontok` (`Id`, `FelhasznaloId`, `FoldrajzPont`, `MatematikaPont`, `FilmPont`, `TortenelemPont`) VALUES
+(1, 1, 10, 20, 30, 40);
 
 -- --------------------------------------------------------
 
@@ -92,6 +114,15 @@ ALTER TABLE `felhasznalok`
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
+-- Indexes for table `pontok`
+--
+ALTER TABLE `pontok`
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `FelhasznaloId` (`FelhasznaloId`),
+  ADD UNIQUE KEY `FelhasznaloId_2` (`FelhasznaloId`),
+  ADD KEY `FelhasznaloId_3` (`FelhasznaloId`);
+
+--
 -- Indexes for table `quiz`
 --
 ALTER TABLE `quiz`
@@ -105,13 +136,29 @@ ALTER TABLE `quiz`
 -- AUTO_INCREMENT for table `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `pontok`
+--
+ALTER TABLE `pontok`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `pontok`
+--
+ALTER TABLE `pontok`
+  ADD CONSTRAINT `pontok_ibfk_1` FOREIGN KEY (`FelhasznaloId`) REFERENCES `felhasznalok` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
