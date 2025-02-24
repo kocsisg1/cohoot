@@ -22,8 +22,8 @@ body{
     
 }
 .background .shape{
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
     position: absolute;
     border-radius: 50%;
     
@@ -44,7 +44,7 @@ body{
         #f09819
     );
     right: -30px;
-    bottom: -80px;
+    bottom: -30px;
     
 }
 .mainpagecontent{
