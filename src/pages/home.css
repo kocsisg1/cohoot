@@ -19,21 +19,19 @@ body{
     transform: translate(-50%,-50%);
     left: 50%;
     top: 50%;
-    margin-top: 60px; /* Hozzáadva, hogy ne lógjon rá a menüre */
 }
 .background .shape{
-    height: 150px; /* Módosítva: 150x150 pixel */
-    width: 150px;  /* Módosítva: 150x150 pixel */
+    height: 200px;
+    width: 200px;
     position: absolute;
     border-radius: 50%;
-    z-index: -50%;
 }
 .shape:first-child{
     background: linear-gradient(
         #1845ad,
         #23a2f6
     );
-    left: -200px;
+    left: -80px;
     top: -80px;
 }
 .shape:last-child{
@@ -43,7 +41,7 @@ body{
         #f09819
     );
     right: -30px;
-    bottom: -30px; /* Módosítva, hogy feljebb kerüljön */
+    bottom: -80px;
 }
 .mainpagecontent{
     display: flex;
@@ -52,17 +50,4 @@ body{
     height: 90vh;
     background-color: #080710;
     font-size: 200px;
-}
-
-/* Reszponzív menü stílusok */
-@media (max-width: 768px) {
-  .w3-bar-item {
-    display: none;
-  }
-  .w3-bar-item.w3-show {
-    display: block;
-  }
-  .w3-bar-item.w3-hide {
-    display: none;
-  }
 }

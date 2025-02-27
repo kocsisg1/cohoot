@@ -3,7 +3,7 @@ import './register.css';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Register = () => {
+const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -70,3 +70,5 @@ export const Register = () => {
     </div>
   );
 };
+
+export default Register;

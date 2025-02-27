@@ -22,8 +22,8 @@ body{
     
 }
 .background .shape{
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
     position: absolute;
     border-radius: 50%;
     
@@ -44,7 +44,7 @@ body{
         #f09819
     );
     right: -30px;
-    bottom: -30px;
+    bottom: -80px;
     
 }
 .mainpagecontent{
@@ -56,8 +56,8 @@ body{
     font-size: 200px;
 }
 .ranking-container {
-  width: 90%;
-  max-width: 600px;
+  width: 90% fit-content;
+  max-width: 400px;
   background: #fff;
   padding: 20px;
   border-radius: 12px;
@@ -111,6 +111,7 @@ body{
 
 .score {
   color: #777;
+  margin-left: 10px;
 }
 
 .ranking {
