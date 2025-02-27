@@ -16,31 +16,102 @@ namespace cohoot.Controllers
             {
                 try
                 {
-                    //var response = context.Felhasznaloks
-                    //    .Select(f => new
-                    //    {
-                    //        f.FelhasznaloNev,
-                    //        f.Pont
-                    //    })
-                    //    .ToList();
-                    //var response2 = context.Felhasznaloks.OrderByDescending(x => x.FelhasznaloNev).Take(5).Select(f => new
-                    //{
-
-                    //    f.FelhasznaloNev
-                    //}).ToList();
-
-                    //var response = context.Pontoks.OrderByDescending(x => x.FoldrajzPont).Take(5).Select(f => new
-                    //  {
-
-                    //       f.FoldrajzPont
-                    //  }).ToList();
-
                     var response = context.Felhasznaloks.Join(context.Pontoks, 
                         user => user.Id,
                         points => points.FelhasznaloId,
                         (user, points) => new {
                             UserName = user.FelhasznaloNev,
                             Points = points.FoldrajzPont
+                        }).OrderByDescending(userPoints => userPoints.Points).Take(5).ToList();
+
+
+                    return Ok(response);
+                }
+                catch (Exception ex)
+                {
+                    var hiba = new List<object>
+            {
+                new { FelhasznaloNev = ex.Message, Pont = 0 }
+            };
+
+                    return BadRequest(hiba);
+                }
+            }
+        }
+
+        [HttpGet("Matematika")]
+        public IActionResult GetMatematika()
+        {
+            using (var context = new CohootContext())
+            {
+                try
+                {
+                    var response = context.Felhasznaloks.Join(context.Pontoks,
+                        user => user.Id,
+                        points => points.FelhasznaloId,
+                        (user, points) => new {
+                            UserName = user.FelhasznaloNev,
+                            Points = points.MatematikaPont
+                        }).OrderByDescending(userPoints => userPoints.Points).Take(5).ToList();
+
+
+                    return Ok(response);
+                }
+                catch (Exception ex)
+                {
+                    var hiba = new List<object>
+            {
+                new { FelhasznaloNev = ex.Message, Pont = 0 }
+            };
+
+                    return BadRequest(hiba);
+                }
+            }
+        }
+
+        [HttpGet("Film")]
+        public IActionResult GetFilm()
+        {
+            using (var context = new CohootContext())
+            {
+                try
+                {
+                    var response = context.Felhasznaloks.Join(context.Pontoks,
+                        user => user.Id,
+                        points => points.FelhasznaloId,
+                        (user, points) => new {
+                            UserName = user.FelhasznaloNev,
+                            Points = points.FilmPont
+                        }).OrderByDescending(userPoints => userPoints.Points).Take(5).ToList();
+
+
+                    return Ok(response);
+                }
+                catch (Exception ex)
+                {
+                    var hiba = new List<object>
+            {
+                new { FelhasznaloNev = ex.Message, Pont = 0 }
+            };
+
+                    return BadRequest(hiba);
+                }
+            }
+        }
+
+        [HttpGet("Tortenelem")]
+        public IActionResult GetTortenelem()
+        {
+            using (var context = new CohootContext())
+            {
+                try
+                {
+                    var response = context.Felhasznaloks.Join(context.Pontoks,
+                        user => user.Id,
+                        points => points.FelhasznaloId,
+                        (user, points) => new {
+                            UserName = user.FelhasznaloNev,
+                            Points = points.TortenelemPont
                         }).OrderByDescending(userPoints => userPoints.Points).Take(5).ToList();
 
 

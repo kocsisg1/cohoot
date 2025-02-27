@@ -9,6 +9,8 @@ namespace cohoot.Controllers
     [ApiController]
     public class QuizController : ControllerBase
     {
+        private static List<int> _sentQuizIds = new List<int>();
+
         [HttpGet]
         public IActionResult Get()
         {
@@ -16,8 +18,20 @@ namespace cohoot.Controllers
             {
                 try
                 {
-                    var response = context.Quizzes.OrderBy(r=>EF.Functions.Random()).Take(1).First();
-                    return Ok(response);
+                    var quizzes = context.Quizzes
+                        .Where(q => q.Id >= 1 && q.Id <= 10 && !_sentQuizIds.Contains(q.Id))
+                        .OrderBy(r => EF.Functions.Random())
+                        .Take(1)
+                        .ToList();
+
+                    if (quizzes.Count == 0)
+                    {
+                        return Ok(new { message = "end" });
+                    }
+
+                    var quiz = quizzes.First();
+                    _sentQuizIds.Add(quiz.Id);
+                    return Ok(quiz);
                 }
                 catch (Exception ex)
                 {
@@ -28,9 +42,14 @@ namespace cohoot.Controllers
                     });
                     return BadRequest(hiba);
                 }
-
             }
+        }
 
+        [HttpPost("reset")]
+        public IActionResult Reset()
+        {
+            _sentQuizIds.Clear();
+            return Ok("Quiz list has been reset.");
         }
     }
 }
