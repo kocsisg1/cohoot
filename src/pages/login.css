@@ -39,7 +39,8 @@ body{
     bottom: -80px;
 }
  form{
-    all:initial;
+    font-size: initial;
+    font-weight: initial;
     height: 520px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
@@ -74,7 +75,8 @@ label{
     font-weight: 500;
 }
 input{
-    all:initial;
+    font-size: initial;
+    font-weight: initial;
     display: block;
     height: 50px;
     width: 100%;
@@ -89,7 +91,8 @@ input{
     color: #e5e5e5;
 }
 button{
-    all:initial;
+    font-size: initial;
+    font-weight: initial;
     margin-top: 50px;
     width: 100%;
     background-color: #ffffff;

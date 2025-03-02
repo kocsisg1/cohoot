@@ -1,6 +1,5 @@
-import { Component } from "react";
 import { CheckAuthStatus } from "./auth";
-import { Navigate, Route } from "react-router";
+import { Navigate} from "react-router";
 
 export const PrivateRoute = ({ children }) => {
     const  user  = CheckAuthStatus();

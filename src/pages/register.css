@@ -39,7 +39,8 @@ body{
     bottom: -80px;
 }
 form{
-    all:initial;
+    font-size: initial;
+    font-weight: initial;
     height: 720px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
@@ -78,10 +79,11 @@ label{
     display: block;
     margin-top: 30px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 50;
 }
 input{
-    all:initial;
+    font-size: initial;
+    font-weight: initial;
     display: block;
     height: 50px;
     width: 100%;
@@ -90,20 +92,20 @@ input{
     padding: 0 10px;
     margin-top: 8px;
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 50;
 }
 ::placeholder{
     color: #e5e5e5;
 }
 button{
-    all:initial;
+    font-weight: initial;
     margin-top: 30px;
     width: 100%;
     background-color: #ffffff;
     color: #080710;
     padding: 15px 0;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 100;
     border-radius: 5px;
     cursor: pointer;
 }
