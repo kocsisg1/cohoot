@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 27. 11:58
--- Kiszolgáló verziója: 10.4.28-MariaDB
--- PHP verzió: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Mar 02, 2025 at 10:55 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `cohoot`
+-- Database: `cohoot`
 --
 CREATE DATABASE IF NOT EXISTS `cohoot` DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
 USE `cohoot`;
@@ -26,7 +26,7 @@ USE `cohoot`;
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `felhasznalok`
+-- Table structure for table `felhasznalok`
 --
 
 CREATE TABLE `felhasznalok` (
@@ -38,7 +38,7 @@ CREATE TABLE `felhasznalok` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `felhasznalok`
+-- Dumping data for table `felhasznalok`
 --
 
 INSERT INTO `felhasznalok` (`Id`, `FelhasznaloNev`, `Email`, `SALT`, `HASH`) VALUES
@@ -50,7 +50,7 @@ INSERT INTO `felhasznalok` (`Id`, `FelhasznaloNev`, `Email`, `SALT`, `HASH`) VAL
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `pontok`
+-- Table structure for table `pontok`
 --
 
 CREATE TABLE `pontok` (
@@ -63,7 +63,7 @@ CREATE TABLE `pontok` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `pontok`
+-- Dumping data for table `pontok`
 --
 
 INSERT INTO `pontok` (`Id`, `FelhasznaloId`, `FoldrajzPont`, `MatematikaPont`, `FilmPont`, `TortenelemPont`) VALUES
@@ -74,7 +74,7 @@ INSERT INTO `pontok` (`Id`, `FelhasznaloId`, `FoldrajzPont`, `MatematikaPont`, `
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `quiz`
+-- Table structure for table `quiz`
 --
 
 CREATE TABLE `quiz` (
@@ -89,7 +89,7 @@ CREATE TABLE `quiz` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `quiz`
+-- Dumping data for table `quiz`
 --
 
 INSERT INTO `quiz` (`Id`, `Kategoria`, `Kerdes`, `Valasz1`, `Valasz2`, `Valasz3`, `Valasz4`, `Helyes`) VALUES
@@ -122,21 +122,31 @@ INSERT INTO `quiz` (`Id`, `Kategoria`, `Kerdes`, `Valasz1`, `Valasz2`, `Valasz3`
 (27, 'Film', 'Melyik filmben nem szerepel Robert De Niro?', 'Taxisofőr', 'Feláldozhatók', 'A komédia királya', 'Dühöngő bika', 2),
 (28, 'Film', 'Melyik évben jelent meg a Titanic című film?', '1987', '1996', '1999', '1997', 4),
 (29, 'Film', 'Ki rendezte a Django elszabadul című filmet?', 'Michael Bay', 'George Lucas', 'Quentin Tarantino', 'Mel Gibson', 3),
-(30, 'Film', 'Melyik film nyerte 2009-ben az Oscar díjat?', 'Gettómilliomos', 'Avatár', 'Becstelen brigantyk', 'A bombák földjén', 4);
+(30, 'Film', 'Melyik film nyerte 2009-ben az Oscar díjat?', 'Gettómilliomos', 'Avatár', 'Becstelen brigantyk', 'A bombák földjén', 4),
+(31, 'Történelem', 'Mikor adta ki János angol király a Magna Carta Libertatumot', '1000', '1215', '1200', '1115', 2),
+(32, 'Történelem', 'Melyik nem része az ókori világ hét csodájának?', 'A rodoszi kolosszus', 'Pheidiasz olümpiai Zeusz-szobra', 'Szemiramisz függőkertje', 'Kínai nagy fal', 4),
+(33, 'Történelem', 'Mikor koronázták meg I. István magyar királyt?', '1000', '1001', '997', '1038', 1),
+(34, 'Történelem', 'Ki volt az első ember aki megmászta a Mount Everestet?', 'George Mallory', 'Andrew Irvine', 'Sir Edmund Hillary', 'Tenzing Norgay', 3),
+(35, 'Történelem', 'Melyik évben ért véget a II. világháború?', '1945', '1944', '1946', '1950', 1),
+(36, 'Történelem', 'Mikor kezdődött az I. világháború?', '1912', '1914', '1916', '1918', 2),
+(37, 'Történelem', 'Ki volt a híres francia király, akit 1793-ban guillotine-ál végeztek ki?', 'XIV. Lajos', 'Napóleon Bonaparte', 'XVI. Lajos', 'III. Lajos', 3),
+(38, 'Történelem', 'Melyik évben történt a berlini fal leomlása?', '1987', '1989', '1990', '1991', 2),
+(39, 'Történelem', 'Melyik országban zajlott az 1917-es bolsevik forradalom?', 'Franciaország', 'Oroszország', 'Németország', 'Kína', 2),
+(40, 'Történelem', 'Melyik híres felfedező hajózta először körbe a Földet?', 'Marco Polo', 'Christopher Columbus', 'James Cook', 'Ferdinand Magellán', 4);
 
 --
--- Indexek a kiírt táblákhoz
+-- Indexes for dumped tables
 --
 
 --
--- A tábla indexei `felhasznalok`
+-- Indexes for table `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
   ADD PRIMARY KEY (`Id`),
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- A tábla indexei `pontok`
+-- Indexes for table `pontok`
 --
 ALTER TABLE `pontok`
   ADD PRIMARY KEY (`Id`),
@@ -145,39 +155,39 @@ ALTER TABLE `pontok`
   ADD KEY `FelhasznaloId_3` (`FelhasznaloId`);
 
 --
--- A tábla indexei `quiz`
+-- Indexes for table `quiz`
 --
 ALTER TABLE `quiz`
   ADD PRIMARY KEY (`Id`);
 
 --
--- A kiírt táblák AUTO_INCREMENT értéke
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT a táblához `felhasznalok`
+-- AUTO_INCREMENT for table `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT a táblához `pontok`
+-- AUTO_INCREMENT for table `pontok`
 --
 ALTER TABLE `pontok`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT a táblához `quiz`
+-- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- Megkötések a kiírt táblákhoz
+-- Constraints for dumped tables
 --
 
 --
--- Megkötések a táblához `pontok`
+-- Constraints for table `pontok`
 --
 ALTER TABLE `pontok`
   ADD CONSTRAINT `pontok_ibfk_1` FOREIGN KEY (`FelhasznaloId`) REFERENCES `felhasznalok` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
