@@ -43,6 +43,8 @@ const Themes = () => {
 
 function FoldrajzQuiz() {
     const [quiz, setQuiz] = useState(null);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [isCorrect, setIsCorrect] = useState(null);
 
     const fetchQuiz = useCallback(() => {
         fetch(`https://localhost:44331/api/Quiz`)
@@ -54,6 +56,8 @@ function FoldrajzQuiz() {
                     resetQuiz();
                 } else {
                     setQuiz(data);
+                    setSelectedAnswer(null); // Reset selected answer
+                    setIsCorrect(null); // Reset correctness state
                 }
             })
             .catch(error => console.error('Hiba a quiz betöltésekor:', error));
@@ -63,7 +67,7 @@ function FoldrajzQuiz() {
         fetch(`https://localhost:44331/api/Quiz/reset`, { method: 'POST' })
             .then(() => {
                 console.log("Quiz resetelve, újraindítás...");
-                fetchQuiz(); // Közvetlenül újraindítjuk a quiz fetch-t
+                fetchQuiz();
             })
             .catch(error => console.error('Hiba a quiz resetelésekor:', error));
     }, [fetchQuiz]);
@@ -73,10 +77,13 @@ function FoldrajzQuiz() {
     }, [fetchQuiz]);
 
     const handleClick = (param) => () => {
-        if (quiz.helyes === param) {
-            console.log("Helyes válasz!");
-        }
-        fetchQuiz();
+        setSelectedAnswer(param);
+        const correct = quiz.helyes === param;
+        setIsCorrect(correct);
+        
+        setTimeout(() => {
+            fetchQuiz();
+        }, 1000); // Wait for 1 second before loading next question
     };
 
     if (!quiz) return <div>Loading...</div>;
@@ -92,10 +99,21 @@ function FoldrajzQuiz() {
                 <div className="quiz-card">
                     <h2 className="quiz-question" id="kerdes">{quiz.kerdes}</h2>
                     <div className="answers-grid">
-                        <button onClick={handleClick(1)} className="answer-card" id="agomb">{quiz.valasz1}</button>
-                        <button onClick={handleClick(2)} className="answer-card" id="bgomb">{quiz.valasz2}</button>
-                        <button onClick={handleClick(3)} className="answer-card" id="cgomb">{quiz.valasz3}</button>
-                        <button onClick={handleClick(4)} className="answer-card" id="dgomb">{quiz.valasz4}</button>
+                        {[1, 2, 3, 4].map((num) => (
+                            <button
+                                key={num}
+                                onClick={handleClick(num)}
+                                className="answer-card"
+                                id={`gomb${num}`}
+                                style={{ 
+                                    backgroundColor: selectedAnswer === num 
+                                        ? (isCorrect ? 'lightgreen' : 'red') 
+                                        : ''
+                                }}
+                            >
+                                {quiz[`valasz${num}`]}
+                            </button>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -105,6 +123,8 @@ function FoldrajzQuiz() {
 
 function MatematikaQuiz() {
     const [quiz, setQuiz] = useState(null);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [isCorrect, setIsCorrect] = useState(null);
 
     const fetchQuiz = useCallback(() => {
         fetch(`https://localhost:44331/api/Quiz/GetMatematika`)
@@ -116,6 +136,8 @@ function MatematikaQuiz() {
                     resetQuiz();
                 } else {
                     setQuiz(data);
+                    setSelectedAnswer(null); // Reset selected answer
+                    setIsCorrect(null); // Reset correctness state
                 }
             })
             .catch(error => console.error('Hiba a quiz betöltésekor:', error));
@@ -125,7 +147,7 @@ function MatematikaQuiz() {
         fetch(`https://localhost:44331/api/Quiz/reset`, { method: 'POST' })
             .then(() => {
                 console.log("Quiz resetelve, újraindítás...");
-                fetchQuiz(); // Közvetlenül újraindítjuk a quiz fetch-t
+                fetchQuiz();
             })
             .catch(error => console.error('Hiba a quiz resetelésekor:', error));
     }, [fetchQuiz]);
@@ -135,10 +157,13 @@ function MatematikaQuiz() {
     }, [fetchQuiz]);
 
     const handleClick = (param) => () => {
-        if (quiz.helyes === param) {
-            console.log("Helyes válasz!");
-        }
-        fetchQuiz();
+        setSelectedAnswer(param);
+        const correct = quiz.helyes === param;
+        setIsCorrect(correct);
+        
+        setTimeout(() => {
+            fetchQuiz();
+        }, 1000); // Wait for 1 second before loading next question
     };
 
     if (!quiz) return <div>Loading...</div>;
@@ -154,10 +179,21 @@ function MatematikaQuiz() {
                 <div className="quiz-card">
                     <h2 className="quiz-question" id="kerdes">{quiz.kerdes}</h2>
                     <div className="answers-grid">
-                        <button onClick={handleClick(1)} className="answer-card" id="agomb">{quiz.valasz1}</button>
-                        <button onClick={handleClick(2)} className="answer-card" id="bgomb">{quiz.valasz2}</button>
-                        <button onClick={handleClick(3)} className="answer-card" id="cgomb">{quiz.valasz3}</button>
-                        <button onClick={handleClick(4)} className="answer-card" id="dgomb">{quiz.valasz4}</button>
+                        {[1, 2, 3, 4].map((num) => (
+                            <button
+                                key={num}
+                                onClick={handleClick(num)}
+                                className="answer-card"
+                                id={`gomb${num}`}
+                                style={{ 
+                                    backgroundColor: selectedAnswer === num 
+                                        ? (isCorrect ? 'lightgreen' : 'red') 
+                                        : ''
+                                }}
+                            >
+                                {quiz[`valasz${num}`]}
+                            </button>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -167,6 +203,8 @@ function MatematikaQuiz() {
 
 function FilmQuiz() {
     const [quiz, setQuiz] = useState(null);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [isCorrect, setIsCorrect] = useState(null);
 
     const fetchQuiz = useCallback(() => {
         fetch(`https://localhost:44331/api/Quiz/GetFilm`)
@@ -178,6 +216,8 @@ function FilmQuiz() {
                     resetQuiz();
                 } else {
                     setQuiz(data);
+                    setSelectedAnswer(null); // Reset selected answer
+                    setIsCorrect(null); // Reset correctness state
                 }
             })
             .catch(error => console.error('Hiba a quiz betöltésekor:', error));
@@ -187,7 +227,7 @@ function FilmQuiz() {
         fetch(`https://localhost:44331/api/Quiz/reset`, { method: 'POST' })
             .then(() => {
                 console.log("Quiz resetelve, újraindítás...");
-                fetchQuiz(); // Közvetlenül újraindítjuk a quiz fetch-t
+                fetchQuiz();
             })
             .catch(error => console.error('Hiba a quiz resetelésekor:', error));
     }, [fetchQuiz]);
@@ -197,10 +237,13 @@ function FilmQuiz() {
     }, [fetchQuiz]);
 
     const handleClick = (param) => () => {
-        if (quiz.helyes === param) {
-            console.log("Helyes válasz!");
-        }
-        fetchQuiz();
+        setSelectedAnswer(param);
+        const correct = quiz.helyes === param;
+        setIsCorrect(correct);
+        
+        setTimeout(() => {
+            fetchQuiz();
+        }, 1000); // Wait for 1 second before loading next question
     };
 
     if (!quiz) return <div>Loading...</div>;
@@ -216,10 +259,21 @@ function FilmQuiz() {
                 <div className="quiz-card">
                     <h2 className="quiz-question" id="kerdes">{quiz.kerdes}</h2>
                     <div className="answers-grid">
-                        <button onClick={handleClick(1)} className="answer-card" id="agomb">{quiz.valasz1}</button>
-                        <button onClick={handleClick(2)} className="answer-card" id="bgomb">{quiz.valasz2}</button>
-                        <button onClick={handleClick(3)} className="answer-card" id="cgomb">{quiz.valasz3}</button>
-                        <button onClick={handleClick(4)} className="answer-card" id="dgomb">{quiz.valasz4}</button>
+                        {[1, 2, 3, 4].map((num) => (
+                            <button
+                                key={num}
+                                onClick={handleClick(num)}
+                                className="answer-card"
+                                id={`gomb${num}`}
+                                style={{ 
+                                    backgroundColor: selectedAnswer === num 
+                                        ? (isCorrect ? 'lightgreen' : 'red') 
+                                        : ''
+                                }}
+                            >
+                                {quiz[`valasz${num}`]}
+                            </button>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -229,6 +283,8 @@ function FilmQuiz() {
 
 function TortenelemQuiz() {
     const [quiz, setQuiz] = useState(null);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [isCorrect, setIsCorrect] = useState(null);
 
     const fetchQuiz = useCallback(() => {
         fetch(`https://localhost:44331/api/Quiz/GetTortenelem`)
@@ -240,6 +296,8 @@ function TortenelemQuiz() {
                     resetQuiz();
                 } else {
                     setQuiz(data);
+                    setSelectedAnswer(null); // Reset selected answer
+                    setIsCorrect(null); // Reset correctness state
                 }
             })
             .catch(error => console.error('Hiba a quiz betöltésekor:', error));
@@ -249,7 +307,7 @@ function TortenelemQuiz() {
         fetch(`https://localhost:44331/api/Quiz/reset`, { method: 'POST' })
             .then(() => {
                 console.log("Quiz resetelve, újraindítás...");
-                fetchQuiz(); // Közvetlenül újraindítjuk a quiz fetch-t
+                fetchQuiz();
             })
             .catch(error => console.error('Hiba a quiz resetelésekor:', error));
     }, [fetchQuiz]);
@@ -259,10 +317,13 @@ function TortenelemQuiz() {
     }, [fetchQuiz]);
 
     const handleClick = (param) => () => {
-        if (quiz.helyes === param) {
-            console.log("Helyes válasz!");
-        }
-        fetchQuiz();
+        setSelectedAnswer(param);
+        const correct = quiz.helyes === param;
+        setIsCorrect(correct);
+        
+        setTimeout(() => {
+            fetchQuiz();
+        }, 1000); // Wait for 1 second before loading next question
     };
 
     if (!quiz) return <div>Loading...</div>;
@@ -278,10 +339,21 @@ function TortenelemQuiz() {
                 <div className="quiz-card">
                     <h2 className="quiz-question" id="kerdes">{quiz.kerdes}</h2>
                     <div className="answers-grid">
-                        <button onClick={handleClick(1)} className="answer-card" id="agomb">{quiz.valasz1}</button>
-                        <button onClick={handleClick(2)} className="answer-card" id="bgomb">{quiz.valasz2}</button>
-                        <button onClick={handleClick(3)} className="answer-card" id="cgomb">{quiz.valasz3}</button>
-                        <button onClick={handleClick(4)} className="answer-card" id="dgomb">{quiz.valasz4}</button>
+                        {[1, 2, 3, 4].map((num) => (
+                            <button
+                                key={num}
+                                onClick={handleClick(num)}
+                                className="answer-card"
+                                id={`gomb${num}`}
+                                style={{ 
+                                    backgroundColor: selectedAnswer === num 
+                                        ? (isCorrect ? 'lightgreen' : 'red') 
+                                        : ''
+                                }}
+                            >
+                                {quiz[`valasz${num}`]}
+                            </button>
+                        ))}
                     </div>
                 </div>
             </div>

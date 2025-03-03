@@ -55,7 +55,7 @@
 }
 
 .answer-card:hover {
-  background-color: #9e7272;
+  background-color: #817e7e;
   transform: scale(1.05);
-  border: 3px solid red;
+  
 }
