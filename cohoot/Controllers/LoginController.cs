@@ -56,6 +56,7 @@ namespace cohoot.Controllers
                         }*/
                         return Ok(new LoggedUser
                         {
+                            Id = loggedUser.Id,
                             FelhasznaloNev = loginDTO.LoginName,
                             Email = loggedUser.Email,
                             Token = token
