@@ -20,19 +20,44 @@ const Login = ({ onAuthChange }) => {
       const salt = await saltResponse.text();
       const hashedPw = await sha256(salt + password);
 
-      const loginResponse = await fetch("https://localhost:44331/api/Login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ loginName: username, tmpHash: hashedPw }),
+      // const loginResponse = await fetch("https://localhost:44331/api/Login", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ loginName: username, tmpHash: hashedPw }),
+      // });
+
+      // if (loginResponse.status === 200) {
+      //   localStorage.setItem('felhasz', 'true'); // Frissítjük a localStorage-t
+      //   console.log(loginResponse.json);
+      //  // localStorage.setItem('userId', )
+      //   onAuthChange(); // Azonnali állapotfrissítés
+      //   navigate("/home");
+      // } else {
+      //   setError("Hibás felhasználónév vagy jelszó");
+      // }
+
+      await fetch("https://localhost:44331/api/Login", {
+           method: "POST",
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify({ loginName: username, tmpHash: hashedPw }),
+      })
+      .then(response => {
+        if(response.status !== 200){
+          setError("Hibás felhasználónév vagy jelszó");
+         // return;
+        }
+        return response.json()
+      })
+      .then(data => {
+        console.log(data);  
+        localStorage.setItem('felhasz', 'true');
+        localStorage.setItem('id', data?.id);
+        onAuthChange();
+        navigate("/home");
       });
 
-      if (loginResponse.status === 200) {
-        localStorage.setItem('felhasz', 'true'); // Frissítjük a localStorage-t
-        onAuthChange(); // Azonnali állapotfrissítés
-        navigate("/home");
-      } else {
-        setError("Hibás felhasználónév vagy jelszó");
-      }
+
+
     } catch (error) {
       setError("Bejelentkezési hiba történt");
     }

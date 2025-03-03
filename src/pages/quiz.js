@@ -1,3 +1,4 @@
+import { GetUsedId } from '../services/auth';
 import './quiz.css';
 import { useState, useEffect, useCallback } from 'react';
 
@@ -77,13 +78,25 @@ function FoldrajzQuiz() {
     }, [fetchQuiz]);
 
     const handleClick = (param) => () => {
-        setSelectedAnswer(param);
-        const correct = quiz.helyes === param;
-        setIsCorrect(correct);
-        
-        setTimeout(() => {
-            fetchQuiz();
-        }, 1000); // Wait for 1 second before loading next question
+        if(selectedAnswer == null)
+        {
+            setSelectedAnswer(param);
+            const correct = quiz.helyes === param;
+            setIsCorrect(correct);
+
+            if(correct){
+                fetch("https://localhost:44331/api/Point", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ id: GetUsedId(), pontok: 50, kategoria: 0 }),
+               })
+            }
+
+            
+            setTimeout(() => {
+                fetchQuiz();
+            }, 1000); // Wait for 1 second before loading next question
+        }
     };
 
     if (!quiz) return <div>Loading...</div>;
@@ -157,13 +170,24 @@ function MatematikaQuiz() {
     }, [fetchQuiz]);
 
     const handleClick = (param) => () => {
-        setSelectedAnswer(param);
-        const correct = quiz.helyes === param;
-        setIsCorrect(correct);
-        
-        setTimeout(() => {
-            fetchQuiz();
-        }, 1000); // Wait for 1 second before loading next question
+        if(selectedAnswer == null)
+        {
+            setSelectedAnswer(param);
+            const correct = quiz.helyes === param;
+            setIsCorrect(correct);
+
+            if(correct){
+                fetch("https://localhost:44331/api/Point", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ id: GetUsedId(), pontok: 50, kategoria: 1 }),
+               })
+            }
+            
+            setTimeout(() => {
+                fetchQuiz();
+            }, 1000); // Wait for 1 second before loading next question
+        }
     };
 
     if (!quiz) return <div>Loading...</div>;
@@ -237,13 +261,23 @@ function FilmQuiz() {
     }, [fetchQuiz]);
 
     const handleClick = (param) => () => {
-        setSelectedAnswer(param);
-        const correct = quiz.helyes === param;
-        setIsCorrect(correct);
-        
-        setTimeout(() => {
-            fetchQuiz();
-        }, 1000); // Wait for 1 second before loading next question
+        if(selectedAnswer == null){
+            setSelectedAnswer(param);
+            const correct = quiz.helyes === param;
+            setIsCorrect(correct);
+            
+            if(correct){
+                fetch("https://localhost:44331/api/Point", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ id: GetUsedId(), pontok: 50, kategoria: 2 }),
+               })
+            }
+
+            setTimeout(() => {
+                fetchQuiz();
+            }, 1000); // Wait for 1 second before loading next question
+        }
     };
 
     if (!quiz) return <div>Loading...</div>;
@@ -317,13 +351,24 @@ function TortenelemQuiz() {
     }, [fetchQuiz]);
 
     const handleClick = (param) => () => {
-        setSelectedAnswer(param);
-        const correct = quiz.helyes === param;
-        setIsCorrect(correct);
-        
-        setTimeout(() => {
-            fetchQuiz();
-        }, 1000); // Wait for 1 second before loading next question
+        if(selectedAnswer == null)
+        {
+            setSelectedAnswer(param);
+            const correct = quiz.helyes === param;
+            setIsCorrect(correct);
+            
+            if(correct){
+                fetch("https://localhost:44331/api/Point", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ id: GetUsedId(), pontok: 50, kategoria: 3 }),
+               })
+            }
+
+            setTimeout(() => {
+                fetchQuiz();
+            }, 1000); // Wait for 1 second before loading next question
+        }
     };
 
     if (!quiz) return <div>Loading...</div>;
@@ -360,5 +405,4 @@ function TortenelemQuiz() {
         </div>
     );
 }
-
 export default Themes;

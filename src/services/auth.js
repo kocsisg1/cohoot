@@ -20,6 +20,10 @@ export function CheckAuthStatus(){
     return localStorage.getItem('felhasz') === 'true';
 }
 
+export function GetUsedId(){
+    return localData.get('id');
+}
+
 export function Logout(){
     localData.remove("userName");
     localData.remove("isLoggedIn");

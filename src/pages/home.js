@@ -1,10 +1,10 @@
 import './home.css';
 
 export default function Home(){
-    return (<div class="mainpagecontent">
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
+    return (<div className="mainpagecontent">
+    <div className="background">
+        <div className="shape"></div>
+        <div className="shape"></div>
     </div>
     <div>
         <h1>Cohoot</h1>
