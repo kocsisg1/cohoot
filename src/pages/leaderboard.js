@@ -1,9 +1,13 @@
 import './leaderboard.css';
 import React, { useEffect, useState } from "react";
-
+import {useResetQuiz} from './quiz.js';
 const Ranking = () => {
   const [currentView, setCurrentView] = useState("main"); // "main" = toplista, "foldrajz" = földrajz ranglista
-
+  const resetQuiz = useResetQuiz();  
+  
+    useEffect(() => {
+      resetQuiz();  
+    }, [resetQuiz]);  
   if (currentView === "foldrajz") {
     return <FoldrajzRanking onBack={() => setCurrentView("main")} />;
   }
@@ -16,6 +20,8 @@ const Ranking = () => {
   if (currentView === "tortenelem") {
     return <TortenelemRanking onBack={() => setCurrentView("main")} />;
   }
+
+  
 
   return (
     <div className="mainpagecontent">

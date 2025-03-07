@@ -9,6 +9,7 @@ import Logout from './pages/logout';
 import { PrivateRoute } from './services/privateRoute';
 import { CheckAuthStatus } from './services/auth';
 import React, { useEffect, useState } from 'react';
+import Themes from './pages/quiz2';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(CheckAuthStatus());
@@ -44,7 +45,7 @@ function App() {
         <Route path="/login" element={<Login onAuthChange={updateAuthStatus} />} />
           <Route path="/register" element={<Register onAuthChange={updateAuthStatus} />} />
           <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
-          <Route path="/quiz" element={<PrivateRoute><Quiz /></PrivateRoute>} />
+          <Route path="/quiz" element={<PrivateRoute><Themes /></PrivateRoute>} />
           <Route path="/leaderboard" element={<PrivateRoute><Leaderboard /></PrivateRoute>} />
           <Route path="/logout" element={<PrivateRoute><Logout onAuthChange={updateAuthStatus} /></PrivateRoute>} />
         </Routes>

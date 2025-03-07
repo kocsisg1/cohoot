@@ -5,6 +5,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 const Themes = () => {
   const [currentView, setCurrentView] = useState("main"); 
+  
 
   if (currentView === "foldrajz") {
     return <FoldrajzQuiz />;
@@ -405,4 +406,18 @@ function TortenelemQuiz() {
         </div>
     );
 }
+
+
+export const useResetQuiz = () => {
+    const resetQuiz = useCallback(() => {
+      fetch('https://localhost:44331/api/Quiz/reset', { method: 'POST' })
+        .then(() => {
+          console.log('Quiz resetelve');
+        })
+        .catch(error => console.error('Hiba a quiz resetelésekor:', error));
+    }, []);
+  
+    return resetQuiz;
+  };
+
 export default Themes;
