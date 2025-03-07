@@ -11,8 +11,8 @@ namespace cohoot.Controllers
     {
         private static List<int> _sentQuizIds = new List<int>();
 
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet("GetFoldrajz")]
+        public IActionResult GetFoldrajz()
         {
             using (var context = new CohootContext())
             {
