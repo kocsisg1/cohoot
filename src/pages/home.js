@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './home.css';
-import {useResetQuiz} from './quiz.js';
+import {useResetQuiz} from './questions.js';
 export default function Home(){
     const resetQuiz = useResetQuiz();  
 

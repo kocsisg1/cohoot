@@ -1,6 +1,6 @@
 import './leaderboard.css';
 import React, { useEffect, useState } from "react";
-import {useResetQuiz} from './quiz.js';
+import {useResetQuiz} from './questions.js';
 const Ranking = () => {
   const [currentView, setCurrentView] = useState("main"); // "main" = toplista, "foldrajz" = földrajz ranglista
   const resetQuiz = useResetQuiz();  

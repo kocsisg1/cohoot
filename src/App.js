@@ -3,13 +3,12 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import Login from './pages/login';
 import Home from './pages/home';
 import Register from './pages/register';
-import Quiz from './pages/quiz';
 import Leaderboard from './pages/leaderboard';
 import Logout from './pages/logout';
 import { PrivateRoute } from './services/privateRoute';
 import { CheckAuthStatus } from './services/auth';
 import React, { useEffect, useState } from 'react';
-import Themes from './pages/quiz2';
+import Themes from './pages/quiz';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(CheckAuthStatus());
