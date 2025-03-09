@@ -42,20 +42,20 @@ namespace cohoot.Controllers
                 if (pointok != null)
                 {
                     if(point.Kategoria == 0)
-                    { // Matematika
-                        pointok.FoldrajzPont += point.Pontok;
+                    { // Földrajz
+                        pointok.FoldrajzPont = (point.Pontok > pointok.FoldrajzPont ? point.Pontok : pointok.FoldrajzPont);
                     }
                     else if (point.Kategoria == 1)
-                    { // Magyar
-                        pointok.MatematikaPont += point.Pontok;
+                    { // Matek
+                        pointok.MatematikaPont = (point.Pontok > pointok.MatematikaPont ? point.Pontok : pointok.MatematikaPont); ;
                     }
                     else if (point.Kategoria == 2)
-                    { // Történelem
-                        pointok.FilmPont += point.Pontok;
+                    { // Film
+                        pointok.FilmPont = (point.Pontok > pointok.FilmPont ? point.Pontok : pointok.FilmPont); ;
                     }
                     else if (point.Kategoria == 3)
-                    { // Földrajz
-                        pointok.TortenelemPont += point.Pontok;
+                    { // Történelem
+                        pointok.TortenelemPont = (point.Pontok > pointok.TortenelemPont ? point.Pontok : pointok.TortenelemPont); ;
                     }    
                 }
                 await cx.SaveChangesAsync();
