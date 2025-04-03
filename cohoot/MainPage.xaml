@@ -1,0 +1,57 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:cohoot.ViewModels"
+             x:Class="cohoot.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Label Text="Ranglista" x:Name="ranglist" IsVisible="True" TextColor="GreenYellow" TextDecorations="Underline" HorizontalTextAlignment="Center" FontSize="50" TextTransform="Uppercase"  SemanticProperties.HeadingLevel="Level1" />
+
+            <Picker x:Name="témák" 
+                    Title="Válassz egy témát" 
+                    SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                    IsVisible="True">
+                <Picker.Items>
+                    <x:String >Foldrajz</x:String>
+                    <x:String>Tortenelem</x:String>
+                    <x:String>Matematika</x:String>
+                    <x:String>Film</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <ListView ItemsSource="{Binding Pontok}"
+                      x:Name=" listview"
+                      IsVisible="True">
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <HorizontalStackLayout>
+                                
+                                <Label Text="{Binding sszam, StringFormat='{0}.'}"/>
+                               
+                                <Label Text="{Binding FelhasznaloNev, StringFormat=' {0} :'}"/>
+
+                                <Label Text="{Binding Pontszam, StringFormat=' Pontszám: {0}'}" />
+                               </HorizontalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ScrollView>
+                <StackLayout>
+                    <Button x:Name="gomb" Text="Főoldal megjelenítése" Clicked="BackToMainPage"/>
+
+                    
+                    <WebView x:Name="webView"
+                     IsVisible="False"
+                     
+                             HeightRequest="1000"
+                             />
+
+
+                </StackLayout>
+            </ScrollView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
