@@ -5,8 +5,9 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
-            <Label Text="Ranglista" x:Name="ranglist" IsVisible="True" TextColor="GreenYellow" TextDecorations="Underline" HorizontalTextAlignment="Center" FontSize="50" TextTransform="Uppercase"  SemanticProperties.HeadingLevel="Level1" />
-
+            <Label Text="Ranglista" x:Name="ranglist" IsVisible="True" TextColor="GreenYellow" TextDecorations="Underline" HorizontalTextAlignment="Center" FontSize="75" TextTransform="Uppercase"  SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Jelenlegi Ranglisták:" x:Name="ranglist2" IsVisible="True" TextColor="GreenYellow" TextDecorations="Underline" HorizontalTextAlignment="Center" FontSize="50" TextTransform="Uppercase"  SemanticProperties.HeadingLevel="Level1" />
+            
             <Picker x:Name="témák" 
                     Title="Válassz egy témát" 
                     SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
